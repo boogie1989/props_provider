@@ -1,19 +1,12 @@
 library;
 
-import 'package:equatable/equatable.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 part 'aspect.dart';
 part 'of.dart';
 part 'read.dart';
 part 'select.dart';
-
-class _Equatable extends Equatable {
-  const _Equatable(this.props);
-
-  @override
-  final List<Object?> props;
-}
 
 abstract class InheritedParams<Child extends InheritedParams<Child>>
     extends InheritedModel<ParamsAspect<InheritedParams<Child>, Object?>> {
@@ -28,7 +21,7 @@ abstract class InheritedParams<Child extends InheritedParams<Child>>
   @override
   bool updateShouldNotify(covariant InheritedParams<Child> oldWidget) {
     return oldWidget != this &&
-        _Equatable(oldWidget.equilityProps) != _Equatable(equilityProps);
+        const ListEquality().equals(oldWidget.equalityProps, equalityProps);
   }
 
   @override
@@ -45,5 +38,6 @@ abstract class InheritedParams<Child extends InheritedParams<Child>>
     return false;
   }
 
-  List<Object?> get equilityProps => [];
+  @protected
+  List<Object?> get equalityProps;
 }

@@ -28,9 +28,9 @@ class Select<Params extends InheritedParams<Params>> {
       shouldNotify: shouldNotify == null
           ? null
           : (prev, next) => shouldNotify(
-              selector(prev),
-              selector(next),
-            ),
+                selector(prev),
+                selector(next),
+              ),
     );
 
     final model = InheritedModel.inheritFrom<Params>(
