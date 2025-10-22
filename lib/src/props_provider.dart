@@ -21,7 +21,7 @@ abstract class PropsProvider<Child extends PropsProvider<Child>>
   @override
   bool updateShouldNotify(covariant PropsProvider<Child> oldWidget) {
     return oldWidget != this &&
-        const ListEquality().equals(oldWidget.equalityProps, equalityProps);
+        const ListEquality().equals(oldWidget.identityProps, identityProps);
   }
 
   @override
@@ -39,5 +39,5 @@ abstract class PropsProvider<Child extends PropsProvider<Child>>
   }
 
   @protected
-  List<Object?> get equalityProps;
+  List<Object?> get identityProps;
 }
