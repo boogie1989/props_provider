@@ -1,11 +1,11 @@
-part of 'inherited_params.dart';
+part of 'props_provider.dart';
 
-class Select<Params extends InheritedParams<Params>> {
-  const Select();
+class PropsSelect<Props extends PropsProvider<Props>> {
+  const PropsSelect();
 
   V call<V extends Object?>(
     BuildContext context,
-    V Function(Params item) selector, {
+    V Function(Props item) selector, {
     bool Function(V prev, V next)? shouldNotify,
   }) {
     final data = maybe<V>(
@@ -14,16 +14,16 @@ class Select<Params extends InheritedParams<Params>> {
       shouldNotify: shouldNotify,
     );
 
-    assert(data is V, 'No $Params found in context');
+    assert(data is V, 'No $Props found in context');
     return data as V;
   }
 
   V? maybe<V extends Object?>(
     BuildContext context,
-    V Function(Params item) selector, {
+    V Function(Props item) selector, {
     bool Function(V prev, V next)? shouldNotify,
   }) {
-    final aspect = ParamsAspect<Params, V>(
+    final aspect = _Aspect<Props, V>(
       selector,
       shouldNotify: shouldNotify == null
           ? null
@@ -33,7 +33,7 @@ class Select<Params extends InheritedParams<Params>> {
               ),
     );
 
-    final model = InheritedModel.inheritFrom<Params>(
+    final model = InheritedModel.inheritFrom<Props>(
       context,
       aspect: aspect,
     );

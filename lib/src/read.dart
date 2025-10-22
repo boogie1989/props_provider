@@ -1,18 +1,18 @@
-part of 'inherited_params.dart';
+part of 'props_provider.dart';
 
 ///
 ///
 ///
-class Read<Params extends InheritedParams<Params>> {
-  const Read();
+class PropsRead<Props extends PropsProvider<Props>> {
+  const PropsRead();
 
-  Params call(BuildContext context) {
-    final params = context.findAncestorWidgetOfExactType<Params>();
-    assert(params != null, 'No $Params found in context');
+  Props call(BuildContext context) {
+    final params = context.findAncestorWidgetOfExactType<Props>();
+    assert(params != null, 'No $Props found in context');
     return params!;
   }
 
-  Params? maybe(BuildContext context) {
-    return context.findAncestorWidgetOfExactType<Params>();
+  Props? maybe(BuildContext context) {
+    return context.findAncestorWidgetOfExactType<Props>();
   }
 }

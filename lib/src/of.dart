@@ -1,14 +1,14 @@
-part of 'inherited_params.dart';
+part of 'props_provider.dart';
 
-class Of<Params extends InheritedParams<Params>> {
-  const Of();
+class PropsOf<Props extends PropsProvider<Props>> {
+  const PropsOf();
 
-  Params call(BuildContext context) {
-    final result = context.dependOnInheritedWidgetOfExactType<Params>();
-    assert(result != null, 'No $Params found in context');
+  Props call(BuildContext context) {
+    final result = context.dependOnInheritedWidgetOfExactType<Props>();
+    assert(result != null, 'No $Props found in context');
     return result!;
   }
 
-  Params? maybe(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<Params>();
+  Props? maybe(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<Props>();
 }

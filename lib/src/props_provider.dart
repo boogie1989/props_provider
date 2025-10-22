@@ -8,26 +8,26 @@ part 'of.dart';
 part 'read.dart';
 part 'select.dart';
 
-abstract class InheritedParams<Child extends InheritedParams<Child>>
-    extends InheritedModel<ParamsAspect<InheritedParams<Child>, Object?>> {
+abstract class PropsProvider<Child extends PropsProvider<Child>>
+    extends InheritedModel<_Aspect<PropsProvider<Child>, Object?>> {
   ///
   ///
   ///
-  const InheritedParams({super.key, required super.child});
+  const PropsProvider({super.key, required super.child});
 
   ///
   ///
   ///
   @override
-  bool updateShouldNotify(covariant InheritedParams<Child> oldWidget) {
+  bool updateShouldNotify(covariant PropsProvider<Child> oldWidget) {
     return oldWidget != this &&
         const ListEquality().equals(oldWidget.equalityProps, equalityProps);
   }
 
   @override
   bool updateShouldNotifyDependent(
-    covariant InheritedParams<Child> oldWidget,
-    Set<ParamsAspect<InheritedParams<Child>, Object?>> dependencies,
+    covariant PropsProvider<Child> oldWidget,
+    Set<_Aspect<PropsProvider<Child>, Object?>> dependencies,
   ) {
     for (final aspect in dependencies) {
       if (aspect.shouldNotify(oldWidget, this)) {
