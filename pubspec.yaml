@@ -1,6 +1,6 @@
 name: props_provider
 description: "A new Flutter package project."
-version: 0.0.2
+version: 0.0.3
 
 environment:
   sdk: ^3.0.0
@@ -9,8 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  collection: ^1.19.1
 
 dev_dependencies:
   flutter_test:

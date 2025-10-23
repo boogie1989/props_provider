@@ -1,6 +1,6 @@
 library;
 
-import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 part 'aspect.dart';
@@ -20,13 +20,15 @@ abstract class PropsProvider<Child extends PropsProvider<Child>>
   ///
   @override
   bool updateShouldNotify(covariant PropsProvider<Child> oldWidget) {
-    return oldWidget != this &&
-        const ListEquality().equals(oldWidget.identityProps, identityProps);
+    return key != oldWidget.key ||
+        identical(oldWidget, this) == false ||
+        listEquals(oldWidget.identityProps, identityProps) == false;
   }
 
   @override
   bool updateShouldNotifyDependent(
     covariant PropsProvider<Child> oldWidget,
+    // ignore: library_private_types_in_public_api
     Set<_Aspect<PropsProvider<Child>, Object?>> dependencies,
   ) {
     for (final aspect in dependencies) {
