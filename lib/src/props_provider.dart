@@ -21,7 +21,6 @@ abstract class PropsProvider<Child extends PropsProvider<Child>>
   @override
   bool updateShouldNotify(covariant PropsProvider<Child> oldWidget) {
     return key != oldWidget.key ||
-        identical(oldWidget, this) == false ||
         listEquals(oldWidget.identityProps, identityProps) == false;
   }
 
