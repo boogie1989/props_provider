@@ -1,20 +1,17 @@
 part of 'props_provider.dart';
 
+/// A request for a selective rebuild based on the selected data.
+/// Used internally by [PropsSelect].
 class Aspect<Props extends PropsProvider<Props>, Data extends Object?> {
-  Aspect(
-    this.selector, {
-    bool Function(Props prev, Props next)? shouldNotify,
-  }) : _shouldNotify = shouldNotify;
+  Aspect(this.selector);
 
+  /// Extracts the data this aspect cares about.
   final Data Function(Props item) selector;
-  final bool Function(
-    Props prev,
-    Props next,
-  )? _shouldNotify;
 
+  /// Returns true if this aspect's data changed between prev and next.
   bool shouldNotify(
     Props prev,
     Props next,
   ) =>
-      _shouldNotify?.call(prev, next) ?? (selector(prev) != selector(next));
+      selector(prev) != selector(next);
 }
