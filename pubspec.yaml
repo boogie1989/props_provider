@@ -1,6 +1,6 @@
 name: props_provider
 description: "Lightweight props provider for Flutter with fine-grained rebuilds powered by InheritedModel."
-repository: https://github.com/lets-props/props_provider.git
+repository: https://github.com/boogie1989/props_provider
 version: 0.0.1
 
 environment:
